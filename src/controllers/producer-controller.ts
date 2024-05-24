@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { Producer } from 'src/producers/producers.entity';
 import { ProducersService } from 'src/producers/producers.service';
 import { CreateProducerDto } from 'src/producers/create-producer-dto';
@@ -14,5 +14,9 @@ export class ProducerController {
     } catch(err) {
         return {'message': "O CNPJ informado já existe na base de dados"}
     }
+  }
+  @Get(':cnpj')
+  async getByCNPJ(@Param('cnpj') cnpj: string) : Promise<Producer> {
+    return await this.producerService.findByCNPJ(cnpj)
   }
 }

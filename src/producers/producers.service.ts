@@ -17,4 +17,8 @@ export class ProducersService {
 
     return {'message': 'Produtor adicionado com sucesso', producer: producer}
   }
+
+  async findByCNPJ(cnpj: string): Promise<Producer> {
+    return await this.producerRepository.findOne({ where: { cnpj } })
+  }
 }
