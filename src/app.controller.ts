@@ -1,6 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { PrismaService } from './database/prisma.service';
 
 interface Hello {
   message: string
@@ -8,7 +7,7 @@ interface Hello {
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService, private prisma: PrismaService) {}
+  constructor(private readonly appService: AppService) {}
 
   @Get("hello")
   getHello(): Hello {
