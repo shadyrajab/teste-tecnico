@@ -11,8 +11,10 @@ export class ProducersService {
     private producerRepository: Repository<Producer>,
   ) {}
 
-  async create(createProducerDto: CreateProducerDto): Promise<Producer> {
+  async create(createProducerDto: CreateProducerDto): Promise<{message: string, producer?: Producer}> {
     const producer = this.producerRepository.create(createProducerDto);
-    return this.producerRepository.save(producer);
+    await this.producerRepository.save(producer);
+
+    return {'message': 'Produtor adicionado com sucesso', producer: producer}
   }
 }

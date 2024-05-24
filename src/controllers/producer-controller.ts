@@ -8,7 +8,11 @@ export class ProducerController {
   constructor(private readonly producerService: ProducersService) {}
 
   @Post()
-  async create(@Body() createProducerDto: CreateProducerDto): Promise<Producer> {
-    return this.producerService.create(createProducerDto);
+  async create(@Body() createProducerDto: CreateProducerDto): Promise<{message: string, producer?: Producer}> {
+    try{
+        return await this.producerService.create(createProducerDto);
+    } catch(err) {
+        return {'message': "O CNPJ informado já existe na base de dados"}
+    }
   }
 }
