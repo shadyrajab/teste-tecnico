@@ -1,9 +1,10 @@
-import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Delete, Put } from '@nestjs/common';
 import { Producer } from 'src/producers/producers.entity';
 import { ProducersService } from 'src/producers/producers.service';
 import { CreateProducerDto } from 'src/producers/create-producer-dto';
-import { ApiProperty } from '@nestjs/swagger';
 import { DeleteProducerDto } from 'src/producers/delete-producer-dto';
+import { UpdateProducerDto } from 'src/producers/update-producer-dto';
+
 
 @Controller('producers')
 export class ProducerController {
@@ -18,11 +19,15 @@ export class ProducerController {
     }
   }
   @Get(':cnpj')
-  async getByCNPJ(@Param('cnpj') cnpj: string) : Promise<Producer> {
+  async getByCNPJ(@Param('cnpj') cnpj: string) : Promise<Producer | {message: string}> {
     return await this.producerService.findByCNPJ(cnpj)
   }
   @Delete()
   async deleteByCNPJ(@Body() deleteProducerDto: DeleteProducerDto): Promise<{ message: string }> {
     return await this.producerService.deleteByCNPJ(deleteProducerDto)
+  }
+  @Put(':cnpj')
+  async updateByCNPJ(@Param("cnpj") cnpj: string, @Body() updateProducerDto: UpdateProducerDto): Promise<{message: string}> {
+    return await this.producerService.updateByCNPJ(cnpj, updateProducerDto)
   }
 }
