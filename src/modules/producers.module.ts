@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProducersService } from './producers.service';
+import { ProducersService } from 'src/services/producers.service';
 import { ProducerController } from 'src/controllers/producer-controller';
-import { Producer } from './producers.entity';
+import { Producer } from '../entities/producers.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Producer])],

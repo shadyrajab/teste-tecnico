@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Producer } from './producers.entity';
-import { CreateProducerDto } from './create-producer-dto';
+import { Producer } from '../entities/producers.entity';
+import { CreateProducerDto } from '../dto/create-producer-dto';
 import { Repository } from 'typeorm';
-import { DeleteProducerDto } from './delete-producer-dto';
-import { UpdateProducerDto } from './update-producer-dto';
+import { DeleteProducerDto } from '../dto/delete-producer-dto';
+import { UpdateProducerDto } from '../dto/update-producer-dto';
 
 @Injectable()
 export class ProducersService {

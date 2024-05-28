@@ -1,9 +1,9 @@
 import { Controller, Post, Body, Get, Param, Delete, Put } from '@nestjs/common';
-import { Producer } from 'src/producers/producers.entity';
-import { ProducersService } from 'src/producers/producers.service';
-import { CreateProducerDto } from 'src/producers/create-producer-dto';
-import { DeleteProducerDto } from 'src/producers/delete-producer-dto';
-import { UpdateProducerDto } from 'src/producers/update-producer-dto';
+import { Producer } from 'src/entities/producers.entity';
+import { ProducersService } from 'src/services/producers.service';
+import { CreateProducerDto } from 'src/dto/create-producer-dto';
+import { DeleteProducerDto } from 'src/dto/delete-producer-dto';
+import { UpdateProducerDto } from 'src/dto/update-producer-dto';
 
 
 @Controller('producers')
