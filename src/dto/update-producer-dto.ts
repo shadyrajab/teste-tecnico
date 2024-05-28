@@ -12,26 +12,41 @@ export class UpdateProducerDto {
   fazenda: string;
 
   @IsOptional()
-  @ApiProperty({ description: 'Cidade onde a fazenda está localizada', example: 'Ribeirão Preto' })
+  @ApiProperty({
+    description: 'Cidade onde a fazenda está localizada',
+    example: 'Ribeirão Preto',
+  })
   cidade: string;
 
   @IsOptional()
-  @ApiProperty({ description: 'Estado onde a fazenda está localizada', example: 'SP' })
+  @ApiProperty({
+    description: 'Estado onde a fazenda está localizada',
+    example: 'SP',
+  })
   estado: string;
 
   @IsOptional()
   @IsNumber()
-  @ApiProperty({ description: 'Área total da fazenda em hectares', example: 1000.5 })
+  @ApiProperty({
+    description: 'Área total da fazenda em hectares',
+    example: 1000.5,
+  })
   areaFazenda: number;
 
   @IsOptional()
   @IsNumber()
-  @ApiProperty({ description: 'Área agriculturável da fazenda em hectares', example: 800.3 })
+  @ApiProperty({
+    description: 'Área agriculturável da fazenda em hectares',
+    example: 800.3,
+  })
   areaAgricultavel: number;
 
   @IsOptional()
   @IsNumber()
-  @ApiProperty({ description: 'Área de vegetação da fazenda em hectares', example: 200.2 })
+  @ApiProperty({
+    description: 'Área de vegetação da fazenda em hectares',
+    example: 200.2,
+  })
   areaVegetacao: number;
 
   @IsOptional()

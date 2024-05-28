@@ -1,6 +1,1 @@
-export type Cultures =
-    | "Soja"
-    | "Milho"
-    | "Algodão"
-    | "Café"
-    | "Cana de Açucar"
+export type Cultures = 'Soja' | 'Milho' | 'Algodão' | 'Café' | 'Cana de Açucar';

@@ -13,35 +13,44 @@ export class ProducersService {
     private producerRepository: Repository<Producer>,
   ) {}
 
-  async create(createProducerDto: CreateProducerDto): Promise<{message: string, producer?: Producer}> {
+  async create(
+    createProducerDto: CreateProducerDto,
+  ): Promise<{ message: string; producer?: Producer }> {
     try {
       const producer = this.producerRepository.create(createProducerDto);
       await this.producerRepository.save(producer);
-      return {'message': 'Produtor adicionado com sucesso', producer: producer}
-    } catch(err) {
-      return {'message': "O CNPJ informado já existe na base de dados"}
+      return { message: 'Produtor adicionado com sucesso', producer: producer };
+    } catch (err) {
+      return { message: 'O CNPJ informado já existe na base de dados' };
     }
   }
 
-  async findByCNPJ(cnpj: string): Promise<Producer | {message: string}> {
-    const producer = await this.producerRepository.findOne({ where: { cnpj } })
-    if (!producer) return {"message": `Não existe nenhum produtor de cnpj ${cnpj}`}
-    return producer
-  }
-
-  async deleteByCNPJ(deleteProducerDto: DeleteProducerDto): Promise<{message: string}> {
-    const cnpj = deleteProducerDto.cnpj
+  async findByCNPJ(cnpj: string): Promise<Producer | { message: string }> {
     const producer = await this.producerRepository.findOne({ where: { cnpj } });
-    if (!producer) return {"message": `Não existe nenhum produtor de cnpj ${cnpj}`}
-    await this.producerRepository.remove(producer)
-
-    return { "message": `Produtor de cnpj ${cnpj} deletado com sucesso`}
+    if (!producer)
+      return { message: `Não existe nenhum produtor de cnpj ${cnpj}` };
+    return producer;
   }
 
-  async updateByCNPJ(cnpj: string, updateProducerDto: UpdateProducerDto): Promise<{message: string}> {
+  async deleteByCNPJ(
+    deleteProducerDto: DeleteProducerDto,
+  ): Promise<{ message: string }> {
+    const cnpj = deleteProducerDto.cnpj;
+    const producer = await this.producerRepository.findOne({ where: { cnpj } });
+    if (!producer)
+      return { message: `Não existe nenhum produtor de cnpj ${cnpj}` };
+    await this.producerRepository.remove(producer);
+
+    return { message: `Produtor de cnpj ${cnpj} deletado com sucesso` };
+  }
+
+  async updateByCNPJ(
+    cnpj: string,
+    updateProducerDto: UpdateProducerDto,
+  ): Promise<{ message: string }> {
     const producer = await this.producerRepository.findOne({ where: { cnpj } });
     if (!producer) {
-      return {"message": `Não existe nenhum CNPJ ${cnpj}`}
+      return { message: `Não existe nenhum CNPJ ${cnpj}` };
     }
 
     const updateKeys = Object.keys(updateProducerDto);
@@ -52,10 +61,10 @@ export class ProducersService {
     }
 
     await this.producerRepository.save(producer);
-    return {"message": `Produtor de CNPJ ${cnpj} atualizado com sucesso`}
+    return { message: `Produtor de CNPJ ${cnpj} atualizado com sucesso` };
   }
-  
+
   async getAll(): Promise<Producer[]> {
-    return await this.producerRepository.find()
+    return await this.producerRepository.find();
   }
 }
