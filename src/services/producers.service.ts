@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Producer } from '../entities/producers.entity';
 import { CreateProducerDto } from '../dto/create-producer-dto';

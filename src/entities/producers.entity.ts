@@ -37,6 +37,6 @@ export class Producer extends BaseEntity {
     @Column({ nullable: false, type: 'float' })
     areaFazenda: number
 
-    @Column({ nullable: true, type: 'varchar' })
-    cultura: Cultures
+    @Column({ nullable: true, type: 'jsonb' })
+    cultura: Cultures[]
 }

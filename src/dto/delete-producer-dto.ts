@@ -1,4 +1,4 @@
-import { Length, IsNotEmpty, Validate } from 'class-validator';
+import { IsNotEmpty, Validate } from 'class-validator';
 import { IsCPFCNPJ } from 'src/decorators/cnpj.validator';
 import { ApiProperty } from '@nestjs/swagger';
 

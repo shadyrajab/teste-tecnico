@@ -40,6 +40,6 @@ export class CreateProducerDto {
   areaFazenda: number;
 
   @IsNotEmpty()
-  @ApiProperty({ description: 'Cultura principal da fazenda', example: 'Soja' })
-  cultura: Cultures;
+  @ApiProperty({ description: 'Cultura principal da fazenda', example: ['Soja', 'Milho'] })
+  cultura: Cultures[];
 }
