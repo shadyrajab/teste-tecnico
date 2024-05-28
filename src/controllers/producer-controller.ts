@@ -12,15 +12,15 @@ export class ProducerController {
 
   @Post()
   async create(@Body() createProducerDto: CreateProducerDto): Promise<{message: string, producer?: Producer}> {
-    try{
-        return await this.producerService.create(createProducerDto);
-    } catch(err) {
-        return {'message': "O CNPJ informado já existe na base de dados"}
-    }
+    return await this.producerService.create(createProducerDto);
   }
   @Get(':cnpj')
   async getByCNPJ(@Param('cnpj') cnpj: string) : Promise<Producer | {message: string}> {
     return await this.producerService.findByCNPJ(cnpj)
+  }
+  @Get("")
+  async getAllCNPJ(): Promise<Producer[]> {
+    return await this.producerService.getAll()
   }
   @Delete()
   async deleteByCNPJ(@Body() deleteProducerDto: DeleteProducerDto): Promise<{ message: string }> {

@@ -5,8 +5,6 @@ import {
     PrimaryGeneratedColumn,
     Column
 } from 'typeorm';
-import { IsCPFCNPJ } from 'src/decorators/cnpj.validator';
-import { Length } from 'class-validator';
 import { Cultures } from '../interfaces/cultures'
 
 @Entity()
@@ -16,8 +14,6 @@ export class Producer extends BaseEntity {
     id: number;
 
     @Column({ nullable: false, type: 'varchar' })
-    @Length(11, 18, { message: "O campo cnpj deve ter entre 11 e 18 caracteres"})
-    @IsCPFCNPJ({ message: "CNPJ/CPF informado está inválido" })
     cnpj: string
 
     @Column({ nullable: false, type: 'varchar' })
@@ -33,14 +29,14 @@ export class Producer extends BaseEntity {
     estado: string
 
     @Column({ nullable: false, type: 'float' })
-    areaFazenda: number
-
-    @Column({ nullable: false, type: 'float' })
     areaAgricultavel: number
 
     @Column({ nullable: false, type: 'float' })
     areaVegetacao: number
 
-    @Column({ nullable: false, type: 'varchar' })
+    @Column({ nullable: false, type: 'float' })
+    areaFazenda: number
+
+    @Column({ nullable: true, type: 'varchar' })
     cultura: Cultures
 }

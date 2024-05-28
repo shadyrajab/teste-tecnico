@@ -14,10 +14,13 @@ export class ProducersService {
   ) {}
 
   async create(createProducerDto: CreateProducerDto): Promise<{message: string, producer?: Producer}> {
-    const producer = this.producerRepository.create(createProducerDto);
-    await this.producerRepository.save(producer);
-
-    return {'message': 'Produtor adicionado com sucesso', producer: producer}
+    try {
+      const producer = this.producerRepository.create(createProducerDto);
+      await this.producerRepository.save(producer);
+      return {'message': 'Produtor adicionado com sucesso', producer: producer}
+    } catch(err) {
+      return {'message': "O CNPJ informado já existe na base de dados"}
+    }
   }
 
   async findByCNPJ(cnpj: string): Promise<Producer | {message: string}> {
@@ -43,7 +46,6 @@ export class ProducersService {
 
     const updateKeys = Object.keys(updateProducerDto);
     for (const key of updateKeys) {
-      console.log(key)
       if (producer.hasOwnProperty(key)) {
         producer[key] = updateProducerDto[key];
       }
@@ -51,5 +53,9 @@ export class ProducersService {
 
     await this.producerRepository.save(producer);
     return {"message": `Produtor de CNPJ ${cnpj} atualizado com sucesso`}
+  }
+  
+  async getAll(): Promise<Producer[]> {
+    return await this.producerRepository.find()
   }
 }

@@ -9,12 +9,8 @@ import {
 @ValidatorConstraint({ async: false })
 export class ValidateCPFCNPJ implements ValidatorConstraintInterface {
     validate(cnpj: string) {
-        if (!cnpj) return false
         cnpj = cnpj.replace(/[^\d]+/g, '');
-
-        if (cnpj.length !== 14 && cnpj.length !== 11) return false
-
-        return true
+        return (cnpj.length === 14 || cnpj.length === 11)
     }
 }
 

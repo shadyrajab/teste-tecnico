@@ -1,12 +1,12 @@
-import { IsNotEmpty, Length, IsNumber } from 'class-validator';
+import { IsNotEmpty, Validate } from 'class-validator';
 import { IsCPFCNPJ } from 'src/decorators/cnpj.validator';
 import { Cultures } from '../interfaces/cultures';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsValidArea } from 'src/decorators/area.validator';
 
 export class CreateProducerDto {
   @IsNotEmpty()
-  @Length(11, 18, { message: 'O campo cnpj deve ter entre 11 e 18 caracteres' })
-  @IsCPFCNPJ({ message: 'CNPJ/CPF informado está inválido' })
+  @IsCPFCNPJ({message: 'CNPJ/CPF informado está inválido'})
   @ApiProperty({ description: 'CNPJ ou CPF do produtor', example: '12345678000195' })
   cnpj: string;
 
@@ -27,19 +27,17 @@ export class CreateProducerDto {
   estado: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  @ApiProperty({ description: 'Área total da fazenda em hectares', example: 1000.5 })
-  areaFazenda: number;
-
-  @IsNotEmpty()
-  @IsNumber()
   @ApiProperty({ description: 'Área agriculturável da fazenda em hectares', example: 800.3 })
   areaAgricultavel: number;
 
   @IsNotEmpty()
-  @IsNumber()
   @ApiProperty({ description: 'Área de vegetação da fazenda em hectares', example: 200.2 })
   areaVegetacao: number;
+
+  @IsNotEmpty()
+  @IsValidArea({message:"A soma da área agricultável e da área de vegetação não pode ser maior que a área total da fazenda."})
+  @ApiProperty({ description: 'Área total da fazenda em hectares', example: 1000.5 })
+  areaFazenda: number;
 
   @IsNotEmpty()
   @ApiProperty({ description: 'Cultura principal da fazenda', example: 'Soja' })
