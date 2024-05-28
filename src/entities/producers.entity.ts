@@ -12,8 +12,8 @@ import { Cultures } from '../interfaces/cultures'
 @Entity()
 @Unique(["cnpj"])
 export class Producer extends BaseEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column({ nullable: false, type: 'varchar' })
     @Length(11, 18, { message: "O campo cnpj deve ter entre 11 e 18 caracteres"})
