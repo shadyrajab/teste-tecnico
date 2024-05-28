@@ -15,10 +15,22 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/producers (POST)', () => {
+    const producerData = {
+      "cnpj": "85262900100",
+      "produtor": "Shady Rajab",
+      "fazenda": "Fazenda Boa Vista",
+      "cidade": "Ribeirão Preto",
+      "estado": "SP",
+      "areaAgricultavel": 800.3,
+      "areaVegetacao": 200.2,
+      "areaFazenda": 1000.5,
+      "cultura": ["Soja", "Milho"]
+    }
     return request(app.getHttpServer())
-      .get('/')
+      .post('/producers')
+      .send(producerData)
       .expect(200)
-      .expect('Hello World!');
+      .expect({'message': "O CNPJ informado já existe na base de dados"});
   });
 });
