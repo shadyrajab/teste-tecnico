@@ -7,11 +7,11 @@ import {
   Delete,
   Put,
 } from '@nestjs/common';
-import { Producer } from 'src/entities/producers.entity';
-import { ProducersService } from 'src/services/producers.service';
-import { CreateProducerDto } from 'src/dto/create-producer-dto';
-import { DeleteProducerDto } from 'src/dto/delete-producer-dto';
-import { UpdateProducerDto } from 'src/dto/update-producer-dto';
+import { Producer } from '../entities/producers.entity';
+import { ProducersService } from '../services/producers.service';
+import { CreateProducerDto } from '../dto/create-producer-dto';
+import { DeleteProducerDto } from '../dto/delete-producer-dto';
+import { UpdateProducerDto } from '../dto/update-producer-dto';
 
 @Controller('producers')
 export class ProducerController {

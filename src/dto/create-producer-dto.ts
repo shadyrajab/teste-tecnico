@@ -1,8 +1,8 @@
 import { IsNotEmpty } from 'class-validator';
-import { IsCPFCNPJ } from 'src/decorators/cnpj.validator';
+import { IsCPFCNPJ } from '../decorators/cnpj.validator';
 import { Cultures } from '../interfaces/cultures';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsValidArea } from 'src/decorators/area.validator';
+import { IsValidArea } from '../decorators/area.validator';
 
 export class CreateProducerDto {
   @IsNotEmpty()

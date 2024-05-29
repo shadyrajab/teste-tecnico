@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { IndicatorsService } from 'src/services/indicators.service';
+import { IndicatorsService } from '../services/indicators.service';
 
 @Controller('indicators')
 export class IndicatorController {

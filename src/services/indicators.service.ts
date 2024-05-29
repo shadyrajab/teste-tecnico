@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Producer } from 'src/entities/producers.entity';
+import { Producer } from '../entities/producers.entity';
 import { camelCase } from 'typeorm/util/StringUtils';
 
 @Injectable()

@@ -41,7 +41,7 @@ export class ProducersService {
       return { message: `Não existe nenhum produtor de cnpj ${cnpj}` };
     await this.producerRepository.remove(producer);
 
-    return { message: `Produtor de cnpj ${cnpj} deletado com sucesso` };
+    return { message: `Produtor de CNPJ ${cnpj} deletado com sucesso` };
   }
 
   async updateByCNPJ(
